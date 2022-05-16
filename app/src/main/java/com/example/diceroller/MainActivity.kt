@@ -3,7 +3,7 @@ package com.example.diceroller
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
+import android.widget.ImageView
 import android.widget.Toast
 import com.example.diceroller.databinding.ActivityMainBinding
 import java.util.*
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 			// - class, называемый context(^C)
 			// - "message"
 			// - duration
-			Toast.makeText(this, "Btn Click", Toast.LENGTH_SHORT).show()
+
 
 			rollDice()
 		}
@@ -40,10 +40,19 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	private fun rollDice() {
-		val resultText: TextView = binding.textView
+		val resultImage: ImageView = binding.imgViewDice
 		// (рандомность будет от 0 - 5, что бы было 1 - 6, нужно +1)
 		val randomInt = Random().nextInt(6) + 1
-		resultText.text = randomInt.toString()
+		val drawableResource =  when (randomInt){
+			1 -> R.drawable.dice_1
+			2 -> R.drawable.dice_2
+			3 -> R.drawable.dice_3
+			4 -> R.drawable.dice_4
+			5 -> R.drawable.dice_5
+			else -> R.drawable.dice_6
+		}
+		resultImage.setImageResource(drawableResource)
+		Toast.makeText(this, "Dropped: ${drawableResource}", Toast.LENGTH_SHORT).show()
 	}
 }
 /*
