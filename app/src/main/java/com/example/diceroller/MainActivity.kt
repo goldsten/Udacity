@@ -20,27 +20,25 @@ import java.util.*
 * setContentView(макет который Activity будет наполнять, а затем рисовать на экране) - делает обе эти вещи
 * */
 class MainActivity : AppCompatActivity() {
+	// (^L)
 	lateinit var binding: ActivityMainBinding
-	override fun onCreate(s: Bundle?) {
+	// (^v)
+	lateinit var resultImage: ImageView
+
+		override fun onCreate(s: Bundle?) {
 		super.onCreate(s)
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		// Получаем  ссылку на кнопку и присваиваем ее неизменяемой val переменной с именем rollButton
 		val rollButton: Button = binding.rollButton
 		rollButton.setOnClickListener {
-			// для этого метода требуются 3 вещи
-			// - class, называемый context(^C)
-			// - "message"
-			// - duration
-
 
 			rollDice()
 		}
-
+		resultImage = binding.imgViewDice
 	}
 
 	private fun rollDice() {
-		val resultImage: ImageView = binding.imgViewDice
 		// (рандомность будет от 0 - 5, что бы было 1 - 6, нужно +1)
 		val randomInt = Random().nextInt(6) + 1
 		val drawableResource =  when (randomInt){
@@ -52,6 +50,7 @@ class MainActivity : AppCompatActivity() {
 			else -> R.drawable.dice_6
 		}
 		resultImage.setImageResource(drawableResource)
+		// (^T)
 		Toast.makeText(this, "Dropped: ${drawableResource}", Toast.LENGTH_SHORT).show()
 	}
 }
@@ -63,4 +62,20 @@ class MainActivity : AppCompatActivity() {
 *
 * (^C) - Object context позволяет общаться и получать информацию о текущем состоянии системы Android
 * MainActivity - является подклассом context
+*
+* (^T)для этого метода требуются 3 вещи
+* class, называемый context(^C)
+* "message"
+* duration
+*
+* findViewById() - нужно свести к минимуму, потому что всякий раз когда вызывается findViewById, он ищет эту иерархию представлений, что является дорогостоящей операцией.
+* В маленьком приложении это не заметно, но в большом приложении на слабот телефоне, будет ощутимая задержка приложения.
+* (^v)View layout(редставления макета), недоступны в памяти до тех пор, пока они не будут расширены этим вызовом setContenView
+* По этому не получится инициализировать View пока это не произойдет.
+* Так что поле view нужно сделать null что бы ему можно было присвоить начально значение
+* (^L) * lateinit - сообщает компилятору, что variable будет инициализирована(не будет равна null) перед вызовом каких-либо операция над ней
+* по этому можно не писать var resultImage: ImageView? = null
+* Можно рассматривать его как не-null везде, где его использовать
+*
+*
 */
