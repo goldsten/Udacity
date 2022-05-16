@@ -58,6 +58,29 @@ android:src="@drawable/empty_dice"
 на
 app:srcCompat="@drawable/empty_dice" - использует библиотеки androidx для поддержки vector images для более старых AIP 7
 
+Все элементы viewText, viewButton ... являются дочерними элементами classes View
+можно реализовать свои view
+pixel dp(density independent) - это абстрактная единица, основанная на физической плотности пикселей экрана
+1dp == 1pixels on 160 dpi screen (точек на дюйм)
+1dp == 3pixels on ф 480 dpi (точек на дюйм)
+
+Views составляющие макет, организованы в виде иерархии views
+            /-View       /- Button
+ViewGroup-{-ViewGroup -{
+           \ -View       \-EditText
+
+ConstraintLayout - лучше подходит для организации небольшого количества ViewGroups
+
+Что бы создать общий стиль у view элементов, нужно:
+настрить один -> нажать на него ПКМ -> Refactor -> Extract Style
+Убрать не нужные атрибуты
+Что бы определить стиль у других
+style="@style/name_file"
+
+
+
+
+
 
 
 
