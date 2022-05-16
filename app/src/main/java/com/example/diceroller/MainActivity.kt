@@ -18,6 +18,7 @@ import java.util.*
 * В onCreate() - указывается какой макет связан с актиностью
 * Его так же нужно Inflate (наполнять/раздувать)
 * setContentView(макет который Activity будет наполнять, а затем рисовать на экране) - делает обе эти вещи
+* AppCompatActivity - включает в себя action bar
 * */
 class MainActivity : AppCompatActivity() {
 	// (^L)
@@ -76,6 +77,16 @@ class MainActivity : AppCompatActivity() {
 * (^L) * lateinit - сообщает компилятору, что variable будет инициализирована(не будет равна null) перед вызовом каких-либо операция над ней
 * по этому можно не писать var resultImage: ImageView? = null
 * Можно рассматривать его как не-null везде, где его использовать
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
 *
 *
 */

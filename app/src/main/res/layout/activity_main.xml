@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,11 +11,12 @@
         android:id="@+id/imgViewDice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/empty_dice"
+        app:srcCompat="@drawable/empty_dice"
         app:layout_constraintBottom_toTopOf="@+id/roll_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Dice" />
 
     <Button
         android:id="@+id/roll_button"
@@ -30,7 +32,6 @@
         app:layout_constraintStart_toStartOf="@+id/imgViewDice"
         app:layout_constraintTop_toBottomOf="@+id/imgViewDice"
         app:layout_constraintVertical_bias="0.0" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 <!--
 В Android эти элементы называются View(представление)
@@ -39,5 +40,26 @@
 -Он делает это в сгенерированном классе с именем R. R-означает resource
 
 Чтобы получить object view из активности, можно использовать findViewByID (или viewBinding)
+
+tools: - используется в предварительном просмотре на панели Design
+
+Имя namespace(пространства имен) — это универсальный идентификатор ресурса (URI)
+android
+app
+tools
+Как правило, URI, выбранный для пространства имен данного XML-словаря, описывает ресурс, находящийся под контролем автора или организации, определяющей словарь, например, URL -адрес веб-сервера автора.
+Android Studio поддерживает различные XML-атрибуты в tools namespace
+Когда вы создаете свое приложение, инструменты сборки удаляют эти атрибуты, поэтому это не влияет на размер вашего APK или поведение во время выполнения.
+
+namespace: android - является namespace для всех атрибутов, которые входят в базовый состав Андроид
+namespace: app - является namespace является namespace для атрибутов, которые исходят из вашего пользовательского кода, либо библиотеки, а не из основной платформы Андроид
+меняем
+android:src="@drawable/empty_dice"
+на
+app:srcCompat="@drawable/empty_dice" - использует библиотеки androidx для поддержки vector images для более старых AIP 7
+
+
+
+
 
 -->
