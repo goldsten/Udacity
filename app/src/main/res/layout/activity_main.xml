@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	 xmlns:app="http://schemas.android.com/apk/res-auto"
+	 android:layout_width="match_parent"
+	 android:layout_height="match_parent"
+	 xmlns:tools="http://schemas.android.com/tools"
+	 tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imgViewDice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/empty_dice"
-        app:layout_constraintBottom_toTopOf="@+id/roll_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="Dice" />
+	<ImageView
+		android:id="@+id/imgViewDice"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:srcCompat="@drawable/empty_dice"
+		app:layout_constraintBottom_toTopOf="@+id/roll_button"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		android:contentDescription="Dice" />
 
-    <Button
-        android:id="@+id/roll_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#C8E6C9"
-        android:clickable="true"
-        android:text="Roll"
-        android:textColor="#009688"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imgViewDice"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="@+id/imgViewDice"
-        app:layout_constraintTop_toBottomOf="@+id/imgViewDice"
-        app:layout_constraintVertical_bias="0.0" />
+	<Button
+		android:id="@+id/roll_button"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:backgroundTint="#C8E6C9"
+		android:clickable="true"
+		android:text="Roll"
+		android:textColor="#009688"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="@+id/imgViewDice"
+		app:layout_constraintHorizontal_bias="0.491"
+		app:layout_constraintStart_toStartOf="@+id/imgViewDice"
+		app:layout_constraintTop_toBottomOf="@+id/imgViewDice"
+		app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 <!--
 В Android эти элементы называются View(представление)
@@ -76,6 +75,25 @@ ConstraintLayout - лучше подходит для организации н�
 Убрать не нужные атрибуты
 Что бы определить стиль у других
 style="@style/name_file"
+
+Текстовые записи можно делать через string.xml
+А можно через Data Class
+data class you_name(
+    var name: String = "",
+    var text: String = ""
+)
+Вверху xml нужно добавить
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+	<data>
+		 <variable name="you_name" type="com.example.android.nameapp.you_name"/>
+	</data>
+	...
+</layout>
+android:text="@={you_name.text}"
+Дальше создаем экземпляр class в MainActivity
+private val you_name:DataBinding = DataBinding("...")
+Дальше в onCreate устанавливаем значение переменной you_name, которая объявляется и используется в файле
+
 
 
 

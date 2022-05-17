@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import com.example.diceroller.databinding.ActivityMainBinding
 import java.util.*
 
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 		super.onCreate(s)
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
+
 		// Получаем  ссылку на кнопку и присваиваем ее неизменяемой val переменной с именем rollButton
 		val rollButton: Button = binding.rollButton
 		rollButton.setOnClickListener {
@@ -38,7 +40,6 @@ class MainActivity : AppCompatActivity() {
 		}
 		resultImage = binding.imgViewDice
 	}
-
 	private fun rollDice() {
 		// (рандомность будет от 0 - 5, что бы было 1 - 6, нужно +1)
 		val randomInt = Random().nextInt(6) + 1
@@ -77,6 +78,14 @@ class MainActivity : AppCompatActivity() {
 * (^L) * lateinit - сообщает компилятору, что variable будет инициализирована(не будет равна null) перед вызовом каких-либо операция над ней
 * по этому можно не писать var resultImage: ImageView? = null
 * Можно рассматривать его как не-null везде, где его использовать
+*
+* findViewById - Каждый раз, когда view ищется через findViewById, Android должен пройти через иерархию view, что бы найти его во время выполнения.
+* Это может занять много времени и замедлить работу app
+* Что бы исправить это, существует метод и шаблон, называемый data binding(привязкой данных)
+* binding - позволяет подключать leyout on activity or fragments во время компиляции
+* Data Binding Library — это вспомогательная библиотека, которая позволяет вам привязывать компоненты пользовательского интерфейса в ваших макетах к источникам данных в вашем приложении, используя декларативный формат, а не программно.
+*
+*
 *
 *
 *
